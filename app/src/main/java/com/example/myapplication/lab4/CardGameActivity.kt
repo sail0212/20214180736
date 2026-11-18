@@ -2,29 +2,38 @@ package com.example.myapplication.lab4
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
+import android.content.res.Configuration
 import android.os.Bundle
-import android.view.Gravity
-import android.widget.Button
-import android.widget.GridLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import cn.edu.sicnu.cardgame.CardMatchingGame
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityCardGameBinding
 
 /**
- * 实验四：翻牌游戏Activity —— MVC 中的 Controller（控制器）
- * - Model：cn.edu.sicnu.cardgame.CardMatchingGame（附件 model.zip 原样代码）
- * - View：activity_card_game.xml 布局 + 代码动态生成的卡牌按钮（GridLayout）
- * - Controller：本 Activity，接受用户点击、调用模型处理、同步刷新界面，并可重置一局新游戏
+ * 实验五：翻牌游戏 Controller（控制器）
+ * - Model：CardMatchingGame（新增 reset()，支持 2/3 张配对）
+ * - View：activity_card_game.xml + item_card.xml，由 RecyclerView 呈现牌面
+ * - Adapter：CardAdapter，负责视图创建、数据绑定和点击回调
+ *
+ * 竖屏 24 张（4 列），横屏 16 张（8 列），方向改变时按规则重新发牌。
  */
 class CardGameActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCardGameBinding
+    private lateinit var game: CardMatchingGame
+    private lateinit var adapter: CardAdapter
 
-    private lateinit var game: CardMatchingGame      // 模型层
-    private val cardButtons = mutableListOf<Button>() // 视图层的卡牌按钮
-    private var score = 0
+    private var matchCount = DEFAULT_MATCH_COUNT
+
+    private val isLandscape: Boolean
+        get() = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+
+    private val cardCount: Int
+        get() = if (isLandscape) CARD_COUNT_LANDSCAPE else CARD_COUNT_PORTRAIT
+
+    private val spanCount: Int
+        get() = if (isLandscape) SPAN_LANDSCAPE else SPAN_PORTRAIT
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,82 +41,61 @@ class CardGameActivity : AppCompatActivity() {
         setContentView(binding.root)
         title = getString(R.string.game_title)
 
-        buildCardGrid()     // 构建 View
-        startNewGame()      // 初始化 Model 并同步 View
+        matchCount = savedInstanceState?.getInt(KEY_MATCH_COUNT, DEFAULT_MATCH_COUNT)
+            ?: DEFAULT_MATCH_COUNT
+        setupGame()
 
-        binding.btnReset.setOnClickListener { startNewGame() }
+        binding.btnReset.setOnClickListener {
+            game.reset()          // 实验五新增模型方法：保留当前局设置，重新发牌并清零
+            updateUI()
+        }
+        binding.btnMode.setOnClickListener {
+            matchCount = if (matchCount == 2) 3 else 2
+            setupGame()
+        }
         binding.btnExit.setOnClickListener {
-            setResult(Activity.RESULT_OK, Intent().putExtra(EXTRA_SCORE, score))
+            setResult(Activity.RESULT_OK, Intent().putExtra(EXTRA_SCORE, game.score))
             finish()
         }
     }
 
-    /** 以代码方式在 GridLayout 中生成 16 张卡牌按钮（4 列 × 4 行） */
-    private fun buildCardGrid() {
-        val density = resources.displayMetrics.density
-        val size = (76 * density).toInt()
-        for (i in 0 until CARD_COUNT) {
-            val button = Button(this).apply {
-                text = ""
-                textSize = 20f
-                gravity = Gravity.CENTER
-                layoutParams = GridLayout.LayoutParams().apply {
-                    width = size
-                    height = size
-                    setMargins((4 * density).toInt(), (4 * density).toInt(),
-                        (4 * density).toInt(), (4 * density).toInt())
-                }
-                setOnClickListener { onCardClicked(i) }
-            }
-            cardButtons.add(button)
-            binding.gridCards.addView(button)
-        }
-    }
-
-    /** 开始新的一局：新建模型、重置得分为 0、刷新所有卡牌为背面 */
-    private fun startNewGame() {
-        game = CardMatchingGame(CARD_COUNT)
-        score = 0
+    /** 按当前屏幕方向创建模型、适配器与布局管理器 */
+    private fun setupGame() {
+        game = CardMatchingGame(cardCount, matchCount)
+        adapter = CardAdapter(game, spanCount, ::onCardClicked)
+        binding.rvCards.layoutManager = GridLayoutManager(this, spanCount)
+        binding.rvCards.adapter = adapter
         updateUI()
     }
 
-    /** 控制器核心：把用户点击交给模型处理，再依据模型状态同步界面 */
+    /** 控制器核心：点击事件 -> 模型处理 -> 刷新视图 */
     private fun onCardClicked(index: Int) {
-        game.chooseCardAtIndex(index)   // 委托模型处理业务规则
-        score = game.score
-        updateUI()                      // 同步界面
+        game.chooseCardAtIndex(index)
+        updateUI()
     }
 
-    /** 根据模型状态刷新得分和每张牌的显示 */
     private fun updateUI() {
-        binding.tvScore.text = getString(R.string.game_score, score)
-        for (i in 0 until CARD_COUNT) {
-            val card = game.cardAtIndex(i)
-            val button = cardButtons[i]
-            if (card.isMatched) {
-                button.text = card.toString()
-                button.setBackgroundColor(Color.parseColor("#C8E6C9")) // 配对成功：浅绿
-                button.isEnabled = false
-            } else if (card.isChosen) {
-                button.text = card.toString()
-                button.setBackgroundColor(Color.parseColor("#FFF9C4")) // 已翻开：浅黄
-                button.isEnabled = true
-            } else {
-                button.text = ""
-                button.setBackgroundResource(R.drawable.bg_card_back)    // 牌背
-                button.isEnabled = true
-            }
-        }
+        binding.tvScore.text = getString(R.string.game_score, game.score)
+        binding.tvMatchMode.text = getString(R.string.game_match_mode, matchCount)
+        binding.tvOrientation.text = getString(R.string.game_orientation_info, cardCount, spanCount)
+        binding.btnMode.text = getString(
+            if (matchCount == 2) R.string.game_btn_mode_3 else R.string.game_btn_mode_2
+        )
+        adapter.refreshAll()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt(KEY_SCORE, score)
+        outState.putInt(KEY_MATCH_COUNT, matchCount)
     }
 
     companion object {
         const val EXTRA_SCORE = "extra_score"
-        private const val CARD_COUNT = 16
-        private const val KEY_SCORE = "key_score"
+        private const val CARD_COUNT_PORTRAIT = 24
+        private const val CARD_COUNT_LANDSCAPE = 16
+        private const val SPAN_PORTRAIT = 4
+        private const val SPAN_LANDSCAPE = 8
+        private const val DEFAULT_MATCH_COUNT = 2
+        private const val KEY_MATCH_COUNT = "key_match_count"
     }
 }
