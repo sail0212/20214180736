@@ -23,9 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
 
-        <!-- 实验三：多Activity（启动页，承担 MainActivity 角色） -->
+        <!-- 实验四：翻牌游戏应用（启动页，主Activity） -->
         <activity
-            android:name=".lab3.LabThreeActivity"
+            android:name=".lab4.LabFourActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,6 +33,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 实验四：2个二级Activity（信息修改、翻牌游戏） -->
+        <activity
+            android:name=".lab4.InfoEditActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".lab4.CardGameActivity" android:exported="false" />
+
+        <!-- 实验三：多Activity（从实验四页面可跳转进入） -->
+        <activity android:name=".lab3.LabThreeActivity" android:exported="true" />
 
         <!-- 实验三：4个二级Activity -->
         <activity android:name=".lab3.SecondForwardActivity" android:exported="false" />

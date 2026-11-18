@@ -105,4 +105,47 @@
     <string name="s4_reset">重置</string>
     <string name="s4_status_running">状态：计时中</string>
     <string name="s4_status_paused">状态：已暂停</string>
+
+    <!-- ==================== 实验四：翻牌游戏应用 ==================== -->
+    <string name="lab4_title">翻牌游戏应用</string>
+    <!-- 提交要求：APP应用标题为姓名+学号 -->
+    <string name="lab4_app_title">向泊帆2024180736</string>
+
+    <!-- 主界面：玩家信息 -->
+    <string name="p_label_name">姓名：</string>
+    <string name="p_label_gender">性别：</string>
+    <string name="p_label_student_id">学号：</string>
+    <string name="p_label_phone">电话：</string>
+    <string name="p_label_best_score">游戏最高分：</string>
+    <string name="p_default_name">向泊帆</string>
+    <string name="p_default_gender">男</string>
+    <string name="p_default_student_id">2024180736</string>
+    <string name="p_default_phone">13800000000</string>
+    <string name="p_best_score_initial">0</string>
+    <string name="p_footer">姓名+学号</string>
+    <string name="p_btn_edit_info">修改个人信息</string>
+    <string name="p_btn_play_game">翻牌游戏</string>
+    <string name="p_btn_to_lab3">查看实验三作品</string>
+
+    <!-- 信息修改界面 -->
+    <string name="edit_title">信息修改</string>
+    <string name="edit_hint_name">请输入姓名</string>
+    <string name="edit_hint_phone">请输入电话号码</string>
+    <string name="edit_label_gender">性别</string>
+    <string name="edit_male">男</string>
+    <string name="edit_female">女</string>
+    <string name="edit_save">保存</string>
+    <string name="edit_cancel">取消</string>
+
+    <!-- 翻牌游戏界面 -->
+    <string name="game_title">翻牌游戏</string>
+    <string name="game_score">得分：%1$d</string>
+    <string name="game_score_initial">得分：0</string>
+    <string name="game_btn_reset">重置游戏</string>
+    <string name="game_btn_exit">退出</string>
+    <string name="game_card_back">牌背</string>
+    <string name="game_best_updated">新纪录！最高分：%1$d</string>
+
+    <!-- 单元测试/UI测试用字符串 -->
+    <string name="test_player_name">测试玩家</string>
 </resources>
