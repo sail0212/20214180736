@@ -1,3 +1,62 @@
 <resources>
     <string name="app_name">向泊帆2024180736</string>
+
+    <!-- ==================== 实验二：UI控件代码生成以及MVC ==================== -->
+    <string name="lab_subtitle">实验二：UI 控件代码生成以及 MVC</string>
+
+    <!-- 功能区 1：代码动态添加 TextView -->
+    <string name="zone1_title">功能区 1：代码动态添加 TextView</string>
+    <string name="zone1_input_hint">请输入要添加的文本内容</string>
+    <string name="zone1_btn_add">添加</string>
+    <string name="zone1_btn_clear">清空</string>
+    <string name="zone1_item_format">第 %1$d 条：%2$s</string>
+    <string name="zone1_count_empty">当前列表为空，点击“添加”按钮动态生成 TextView</string>
+    <string name="zone1_count">已动态添加 %1$d 条 TextView</string>
+    <string name="zone1_toast_empty">请输入要添加的内容</string>
+
+    <!-- 功能区 2：MVC 交互式 ProgramAdviser -->
+    <string name="zone2_title">功能区 2：MVC 模式交互式 ProgramAdviser</string>
+    <string name="zone2_prompt">请选择你想学习的方向，然后点击按钮获取建议：</string>
+    <string name="zone2_option_android">Android 应用开发</string>
+    <string name="zone2_option_web">网站开发</string>
+    <string name="zone2_option_game">游戏开发</string>
+    <string name="zone2_option_data">数据分析与人工智能</string>
+    <string name="zone2_option_script">自动化脚本</string>
+    <string name="zone2_btn_advise">获取学习建议</string>
+    <string name="zone2_advice_placeholder">点击“获取学习建议”按钮，查看模型层返回的结果</string>
+    <string name="zone2_toast_no_selection">请先选择一个学习方向</string>
+
+    <!-- 学习建议结果模板 -->
+    <string name="advice_target">学习方向：%1$s</string>
+    <string name="advice_language">推荐语言：%1$s</string>
+    <string name="advice_reason">推荐理由：%1$s</string>
+    <string name="advice_steps">学习路径：\n%1$s</string>
+
+    <!-- 模型层建议数据：Android 方向 -->
+    <string name="advice_android_language">Kotlin</string>
+    <string name="advice_android_reason">Android 官方首选开发语言，语法简洁现代，与 Java 完全互通，生态成熟、岗位需求大。</string>
+    <string name="advice_android_steps">1. Kotlin 基础语法与空安全\n2. Activity 生命周期与 Intent\n3. 常用 UI 控件与布局\n4. 网络请求与数据存储\n5. 理解 MVC / MVVM 架构并完成完整项目</string>
+
+    <!-- 模型层建议数据：Web 方向 -->
+    <string name="advice_web_language">JavaScript / TypeScript</string>
+    <string name="advice_web_reason">Web 开发的标准语言，浏览器原生支持，前后端均可使用，上手快、社区资源丰富。</string>
+    <string name="advice_web_steps">1. HTML 与 CSS 基础\n2. JavaScript 核心语法与 DOM 操作\n3. TypeScript 类型系统\n4. 前端框架（Vue / React）\n5. Node.js 与服务端基础</string>
+
+    <!-- 模型层建议数据：游戏方向 -->
+    <string name="advice_game_language">C#（Unity）或 C++（Unreal）</string>
+    <string name="advice_game_reason">主流游戏引擎的官方开发语言，教程与资源丰富，适合快速开发游戏原型与作品。</string>
+    <string name="advice_game_steps">1. C# 或 C++ 基础语法\n2. 面向对象与数据结构\n3. 游戏引擎基础（Unity / Unreal）\n4. 物理、动画与场景管理\n5. 独立完成一个小游戏项目</string>
+
+    <!-- 模型层建议数据：数据方向 -->
+    <string name="advice_data_language">Python</string>
+    <string name="advice_data_reason">数据科学与人工智能领域的首选语言，第三方库生态强大（NumPy、Pandas、PyTorch）。</string>
+    <string name="advice_data_steps">1. Python 基础语法\n2. NumPy 与 Pandas 数据处理\n3. Matplotlib 数据可视化\n4. 机器学习基础（scikit-learn）\n5. 深度学习入门（PyTorch）</string>
+
+    <!-- 模型层建议数据：脚本方向 -->
+    <string name="advice_script_language">Python / Shell</string>
+    <string name="advice_script_reason">语法简洁、开发效率高，适合编写自动化脚本与工具，快速提升日常工作效率。</string>
+    <string name="advice_script_steps">1. Python 基础语法\n2. 文件与目录操作\n3. 常用标准库（os、re、json）\n4. Shell 基础命令\n5. 定时任务与批量处理脚本</string>
+
+    <!-- 跳转实验一 -->
+    <string name="btn_lab1">查看实验一作品</string>
 </resources>
