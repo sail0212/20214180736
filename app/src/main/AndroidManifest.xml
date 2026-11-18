@@ -2,6 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- 实验三：隐式Intent相机拍照所需权限 -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- targetSdk 30+ 包可见性限制：需声明 queries 才能解析到系统相机应用 -->
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,17 +22,44 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <!-- 实验二：UI控件代码生成以及MVC（启动页） -->
+
+        <!-- 实验三：多Activity（启动页，承担 MainActivity 角色） -->
         <activity
-            android:name=".LabTwoActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:name=".lab3.LabThreeActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 实验三：4个二级Activity -->
+        <activity android:name=".lab3.SecondForwardActivity" android:exported="false" />
+        <activity
+            android:name=".lab3.SecondReturnActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".lab3.SecondCameraActivity" android:exported="false" />
+        <!-- 不声明 configChanges：横竖屏切换会重建Activity，用 onSaveInstanceState 恢复计时状态 -->
+        <activity android:name=".lab3.SecondStopWatchActivity" android:exported="false" />
+
+        <!-- FileProvider：相机拍照 content Uri 共享（兼容 Android 7.0+） -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- 实验二：UI控件代码生成以及MVC（从实验三页面可跳转进入） -->
+        <activity
+            android:name=".LabTwoActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
 
         <!-- 实验一：多语言交互式Hello World（从实验二页面可跳转进入） -->
         <activity

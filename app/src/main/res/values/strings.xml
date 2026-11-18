@@ -59,4 +59,50 @@
 
     <!-- 跳转实验一 -->
     <string name="btn_lab1">查看实验一作品</string>
+
+    <!-- ==================== 实验三：多Activity ==================== -->
+    <string name="lab3_title">实验三：多Activity开发</string>
+    <!-- 提交要求：APP应用标题为姓名+学号 -->
+    <string name="lab3_app_title">向泊帆2024180736</string>
+
+    <!-- 主界面（本实验中承担 MainActivity 角色） -->
+    <string name="lab3_main_header">Intent 与多 Activity 综合实验</string>
+    <string name="lab3_btn_forward">按钮1：正向传参</string>
+    <string name="lab3_btn_return">按钮2：返回结果</string>
+    <string name="lab3_btn_camera">按钮3：相机拍照</string>
+    <string name="lab3_btn_stopwatch">按钮4：秒表 StopWatch</string>
+    <string name="lab3_return_label">从第二个 Activity 返回的结果：</string>
+    <string name="lab3_return_hint">（尚未收到返回结果）</string>
+    <string name="lab3_return_format">返回结果：%1$s</string>
+    <string name="lab3_extra_value">向泊帆 2024180736</string>
+    <string name="lab3_btn_to_lab2">查看实验二作品</string>
+
+    <!-- 第1个二级Activity：接收正向参数 -->
+    <string name="s1_title">第1个二级Activity</string>
+    <string name="s1_received_label">接收到的参数内容：</string>
+    <string name="s1_finish">返回主界面</string>
+
+    <!-- 第2个二级Activity：输入内容并返回 -->
+    <string name="s2_title">第2个二级Activity</string>
+    <string name="s2_input_hint">请输入要返回给主界面的内容</string>
+    <string name="s2_confirm">确定并返回</string>
+    <string name="s2_empty">输入内容不能为空</string>
+
+    <!-- 第3个二级Activity：隐式Intent相机拍照 -->
+    <string name="s3_title">第3个二级Activity</string>
+    <string name="s3_hint">点击下方按钮，通过隐式 Intent 启动系统相机</string>
+    <string name="s3_take_photo">启动相机拍照</string>
+    <string name="s3_image_desc">拍照结果照片</string>
+    <string name="s3_permission_denied">需要相机权限才能拍照</string>
+    <string name="s3_no_camera">设备上没有可用的相机应用</string>
+    <string name="s3_capture_failed">拍照未完成</string>
+
+    <!-- 第4个二级Activity：StopWatch -->
+    <string name="s4_title">第4个二级Activity：StopWatch</string>
+    <string name="s4_hint">横竖屏切换时计时不中断</string>
+    <string name="s4_start">开始</string>
+    <string name="s4_pause">暂停</string>
+    <string name="s4_reset">重置</string>
+    <string name="s4_status_running">状态：计时中</string>
+    <string name="s4_status_paused">状态：已暂停</string>
 </resources>

@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- 实验三：多Activity 主题色 -->
+    <color name="purple_500">#FF6200EE</color>
 </resources>
