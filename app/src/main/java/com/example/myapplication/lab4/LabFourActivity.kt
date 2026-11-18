@@ -3,7 +3,10 @@ package com.example.myapplication.lab4
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityLabFourBinding
@@ -112,6 +115,26 @@ class LabFourActivity : AppCompatActivity() {
         outState.putString(KEY_STUDENT_ID, studentId)
         outState.putString(KEY_PHONE, phone)
         outState.putInt(KEY_BEST_SCORE, bestScore)
+    }
+
+    // ==================== 实验五：主Activity菜单与关于对话框 ====================
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_about -> {
+                AlertDialog.Builder(this)
+                    .setTitle(R.string.about_title)
+                    .setMessage(R.string.about_message)
+                    .setPositiveButton(R.string.about_ok, null)
+                    .show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     companion object {

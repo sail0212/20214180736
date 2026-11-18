@@ -5,4 +5,8 @@
 
     <!-- 实验三：多Activity 主题色 -->
     <color name="purple_500">#FF6200EE</color>
+
+    <!-- 实验五：翻牌游戏牌面颜色 -->
+    <color name="card_matched">#FFC8E6C9</color>
+    <color name="card_chosen">#FFFFF9C4</color>
 </resources>

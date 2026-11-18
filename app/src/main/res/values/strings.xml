@@ -148,4 +148,24 @@
 
     <!-- 单元测试/UI测试用字符串 -->
     <string name="test_player_name">测试玩家</string>
+
+    <!-- ==================== 实验五：RecyclerView翻牌游戏应用 ==================== -->
+    <string name="lab5_app_title">向泊帆2024180736</string>
+    <string name="lab5_title">实验五：RecyclerView翻牌游戏</string>
+
+    <!-- 菜单与关于对话框 -->
+    <string name="menu_about">关于</string>
+    <string name="about_title">关于本应用</string>
+    <string name="about_message">RecyclerView 翻牌游戏应用\n姓名：向泊帆\n学号：2024180736\n版本：1.0\n\n本应用包含实验一至实验五作品，实验五使用 RecyclerView 实现翻牌游戏，并支持 2 张/3 张配对规则。</string>
+    <string name="about_ok">确定</string>
+
+    <!-- 翻牌游戏（实验五） -->
+    <string name="game_match_mode_initial">当前规则：2 张配对</string>
+    <string name="game_match_mode">当前规则：%1$d 张配对</string>
+    <string name="game_orientation_initial">竖屏 24 张 / 横屏 16 张</string>
+    <string name="game_orientation_info">本屏 %1$d 张牌，%2$d 列显示</string>
+    <string name="game_btn_mode">切换配对张数</string>
+    <string name="game_btn_mode_3">切换为 3 张配对</string>
+    <string name="game_btn_mode_2">切换为 2 张配对</string>
+    <string name="game_card_position">第 %1$d 张牌</string>
 </resources>

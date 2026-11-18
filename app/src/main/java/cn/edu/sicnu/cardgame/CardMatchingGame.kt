@@ -1,53 +1,78 @@
 package cn.edu.sicnu.cardgame
 
-class CardMatchingGame(count: Int)  {
+/**
+ * 实验五：在实验四模型基础上增加 reset() 与三张牌匹配规则。
+ * @param totalCards 本局牌数（竖屏 24 张，横屏 16 张）
+ * @param matchCount 每次配对需要的牌数，2 或 3
+ */
+class CardMatchingGame(
+    private val totalCards: Int,
+    private val matchCount: Int = 2
+) {
     var score = 0
         private set
 
-    private val cards: MutableList<Card>
+    private val cards: MutableList<Card> = mutableListOf()
 
     init {
+        reset()
+    }
+
+    /** 实验五新增：重新发牌并清零分数，保持当前配对规则不变 */
+    fun reset() {
+        score = 0
+        cards.clear()
         val deck = Deck()
-        cards = mutableListOf()
-        for (i in 1..count) {
-            val card: Card? = deck.drawRandomCard()
-            if (card != null) {
-                cards.add(card)
-            }
+        repeat(totalCards) {
+            deck.drawRandomCard()?.let { cards.add(it) }
         }
     }
 
-    fun cardAtIndex(index: Int): Card {
-        return cards.get(index)
-    }
+    fun cardAtIndex(index: Int): Card = cards[index]
+
+    val cardCount: Int
+        get() = cards.size
+
+    val matchingCards: Int
+        get() = matchCount
 
     val MISMATCH_PENALTY = 2
     val MATCH_BONUS = 4
     val COST_TO_CHOOSE = 1
 
+    /**
+     * 实验五修改：根据 matchCount 决定取几张已翻开的牌参与比较，
+     * 具体匹配得分仍交给 Card.match 计算，模型其余部分不变。
+     */
     fun chooseCardAtIndex(index: Int) {
-        val card= cardAtIndex(index)
-        if (!card.isMatched) {
-            if (card.isChosen) {
+        val card = cardAtIndex(index)
+        if (card.isMatched) return
+
+        if (card.isChosen) {
+            card.isChosen = false
+            return
+        }
+
+        val chosen = cards.filter { it.isChosen && !it.isMatched }
+        if (chosen.size >= matchCount - 1) {
+            val others = chosen.take(matchCount - 1).toTypedArray()
+            val matchScore = card.match(others)
+            if (matchScore > 0) {
+                score += matchScore * MATCH_BONUS
+                others.forEach {
+                    it.isMatched = true
+                    it.isChosen = false
+                }
+                card.isMatched = true
                 card.isChosen = false
             } else {
-                for (otherCard in cards) {
-                    if (otherCard.isChosen && !otherCard.isMatched) {
-                        val matchScore = card.match(arrayOf(otherCard))
-                        if (matchScore > 0) {
-                            score += matchScore * MATCH_BONUS
-                            otherCard.isMatched = true
-                            card.isMatched = true
-                        } else {
-                            score -= MISMATCH_PENALTY
-                            otherCard.isChosen = false
-                        }
-                        break
-                    }
-                }
-                score -= COST_TO_CHOOSE
+                score -= MISMATCH_PENALTY
+                others.forEach { it.isChosen = false }
                 card.isChosen = true
             }
+        } else {
+            card.isChosen = true
         }
+        score -= COST_TO_CHOOSE
     }
 }
