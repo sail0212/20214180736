@@ -186,4 +186,32 @@
     <string name="lab6_mode_hint">规则：每 %1$d 张同点数或同花色配对，得分自动存盘，重开程序可续玩</string>
     <string name="lab6_mode_hint_initial">规则提示</string>
     <string name="lab6_about_message">多 Fragment 应用实验\n姓名：向泊帆\n学号：2024180736\n版本：1.0\n\n本应用包含三个 Fragment：个人信息、2 张牌翻牌、3 张牌翻牌；均采用对象序列化 + 内部文件存储保存历史信息，退出程序后重新打开可以恢复。</string>
+
+    <!-- ==================== 实验七：基于Service的音乐播放应用 ==================== -->
+    <string name="lab7_app_title">向泊帆2024180736</string>
+    <string name="lab7_header">实验七：基于 Service 的音乐播放应用</string>
+    <string name="lab7_now_playing">正在播放</string>
+    <string name="lab7_no_song">未选择歌曲</string>
+    <string name="lab7_time_initial">00:00</string>
+    <string name="lab7_btn_previous">上一首</string>
+    <string name="lab7_btn_play">播放</string>
+    <string name="lab7_btn_pause">暂停</string>
+    <string name="lab7_btn_next">下一首</string>
+    <string name="lab7_btn_stop">停止</string>
+    <string name="lab7_song_count_initial">音乐列表：加载中…</string>
+    <string name="lab7_song_count">音乐列表：共 %1$d 首</string>
+    <string name="lab7_song_title_placeholder">歌曲名</string>
+    <string name="lab7_song_artist_placeholder">歌手 - 时长</string>
+    <string name="lab7_song_artist">%1$s · %2$s</string>
+    <string name="lab7_song_icon_desc">音乐图标</string>
+    <string name="lab7_no_music">未检测到音乐文件，请先在设备上放置音频文件</string>
+    <string name="lab7_permission_denied">需要读取音频权限才能加载音乐列表</string>
+    <string name="lab7_service_not_ready">播放服务尚未就绪，请稍候</string>
+
+    <!-- 通知栏：显示当前歌曲名 -->
+    <string name="lab7_notification_title">向泊帆2024180736 音乐播放</string>
+    <string name="lab7_notification_playing">正在播放：%1$s</string>
+    <string name="lab7_notify_stopped">播放已停止</string>
+    <string name="lab7_channel_name">音乐播放通知</string>
+    <string name="lab7_channel_desc">显示当前正在播放的歌曲名</string>
 </resources>

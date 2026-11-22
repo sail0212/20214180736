@@ -9,4 +9,12 @@
     <!-- 实验五：翻牌游戏牌面颜色 -->
     <color name="card_matched">#FFC8E6C9</color>
     <color name="card_chosen">#FFFFF9C4</color>
+
+    <!-- 实验七：音乐播放应用配色 -->
+    <color name="lab7_page_bg">#FFF5F5FA</color>
+    <color name="lab7_card_bg">#FFFFFFFF</color>
+    <color name="lab7_item_bg">#FFFFFFFF</color>
+    <color name="lab7_playing_bg">#FFE1D2FC</color>
+    <color name="lab7_text_primary">#FF212121</color>
+    <color name="lab7_text_secondary">#FF757575</color>
 </resources>

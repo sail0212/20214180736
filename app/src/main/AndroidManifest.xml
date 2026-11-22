@@ -6,6 +6,16 @@
     <uses-feature android:name="android.hardware.camera" android:required="false" />
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <!-- 实验七：音乐播放应用所需权限 -->
+    <!-- SDK 13+(API 33) 使用 READ_MEDIA_AUDIO，低版本使用 READ_EXTERNAL_STORAGE -->
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+
     <!-- targetSdk 30+ 包可见性限制：需声明 queries 才能解析到系统相机应用 -->
     <queries>
         <intent>
@@ -23,9 +33,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
 
-        <!-- 实验六：多Fragment应用（本次作业启动页，容器Activity） -->
+        <!-- 实验七：基于Service的音乐播放应用（本次作业启动页） -->
         <activity
-            android:name=".lab6.LabSixActivity"
+            android:name=".lab7.LabSevenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,6 +43,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 实验七：音乐播放服务（前台服务，mediaPlayback 类型） -->
+        <service
+            android:name=".lab7.MusicService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+
+        <!-- 实验六：多Fragment应用（保留，可从外部访问） -->
+        <activity
+            android:name=".lab6.LabSixActivity"
+            android:exported="true" />
 
         <!-- 实验四：翻牌游戏应用（原启动页，保留可从外部访问） -->
         <activity
