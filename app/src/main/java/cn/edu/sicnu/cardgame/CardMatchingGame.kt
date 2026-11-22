@@ -1,14 +1,21 @@
 package cn.edu.sicnu.cardgame
 
+import java.io.Serializable
+
 /**
  * 实验五：在实验四模型基础上增加 reset() 与三张牌匹配规则。
- * @param totalCards 本局牌数（竖屏 24 张，横屏 16 张）
+ * 实验六：实现 Serializable，支持把整局游戏状态序列化到本地文件，退出重开可恢复。
+ * @param totalCards 本局牌数
  * @param matchCount 每次配对需要的牌数，2 或 3
  */
 class CardMatchingGame(
     private val totalCards: Int,
     private val matchCount: Int = 2
-) {
+) : Serializable {
+    companion object {
+        private const val serialVersionUID: Long = 1L
+    }
+
     var score = 0
         private set
 

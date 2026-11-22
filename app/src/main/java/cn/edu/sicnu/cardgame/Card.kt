@@ -1,8 +1,17 @@
 package cn.edu.sicnu.cardgame
 
-class Card(private var suit: String, private var rank: String, var isChosen:Boolean = false, var isMatched:Boolean = false)  {
+import java.io.Serializable
+
+/** 实验六：实现 Serializable，使牌面对象可随游戏状态一起写入本地文件 */
+class Card(
+    private var suit: String,
+    private var rank: String,
+    var isChosen: Boolean = false,
+    var isMatched: Boolean = false
+) : Serializable {
     companion object {
-        val rankStrings= arrayOf("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K")
+        private const val serialVersionUID: Long = 1L
+        val rankStrings = arrayOf("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K")
         val validSuits = arrayOf("♥", "♦", "♠", "♣")
     }
 

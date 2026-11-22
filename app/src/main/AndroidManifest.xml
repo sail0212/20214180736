@@ -23,9 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
 
-        <!-- 实验四：翻牌游戏应用（启动页，主Activity） -->
+        <!-- 实验六：多Fragment应用（本次作业启动页，容器Activity） -->
         <activity
-            android:name=".lab4.LabFourActivity"
+            android:name=".lab6.LabSixActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,6 +33,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 实验四：翻牌游戏应用（原启动页，保留可从外部访问） -->
+        <activity
+            android:name=".lab4.LabFourActivity"
+            android:exported="true" />
 
         <!-- 实验四：2个二级Activity（信息修改、翻牌游戏） -->
         <activity

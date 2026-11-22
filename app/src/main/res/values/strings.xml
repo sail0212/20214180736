@@ -168,4 +168,22 @@
     <string name="game_btn_mode_3">切换为 3 张配对</string>
     <string name="game_btn_mode_2">切换为 2 张配对</string>
     <string name="game_card_position">第 %1$d 张牌</string>
+
+    <!-- ==================== 实验六：多Fragment应用 ==================== -->
+    <string name="lab6_app_title">向泊帆2024180736</string>
+    <string name="lab6_header">实验六：多 Fragment 应用</string>
+    <string name="lab6_tab_profile">个人信息</string>
+    <string name="lab6_tab_two">2张牌翻牌</string>
+    <string name="lab6_tab_three">3张牌翻牌</string>
+    <string name="lab6_profile_title">个人信息（序列化存储）</string>
+    <string name="lab6_profile_hint">编辑后点击“保存”，个人信息将以对象序列化方式写入文件，退出程序再次打开可自动恢复。</string>
+    <string name="lab6_save">保存个人信息</string>
+    <string name="lab6_saved">个人信息已保存</string>
+    <string name="lab6_name_required">姓名不能为空</string>
+    <string name="lab6_best_score">2张牌最高分：%1$d\n3张牌最高分：%2$d</string>
+    <string name="lab6_two_card_title">2 张牌翻牌游戏（序列化存档）</string>
+    <string name="lab6_three_card_title">3 张牌翻牌游戏（序列化存档）</string>
+    <string name="lab6_mode_hint">规则：每 %1$d 张同点数或同花色配对，得分自动存盘，重开程序可续玩</string>
+    <string name="lab6_mode_hint_initial">规则提示</string>
+    <string name="lab6_about_message">多 Fragment 应用实验\n姓名：向泊帆\n学号：2024180736\n版本：1.0\n\n本应用包含三个 Fragment：个人信息、2 张牌翻牌、3 张牌翻牌；均采用对象序列化 + 内部文件存储保存历史信息，退出程序后重新打开可以恢复。</string>
 </resources>
